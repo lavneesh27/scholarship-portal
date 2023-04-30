@@ -1,0 +1,38 @@
+<div
+  class="container d-flex flex-column justify-content-center text-center my-5"
+>
+  <h1>🎓Scholarship</h1>
+  <p>
+    Finding a Scholarship where you can apply can be a tedious process. But
+    Don't worry! we got you covered. Our website allows you to easily browse
+    through Scholarships by category.We make it simple for you to search for
+    Scholarships that you qualify for. We do the work for you, All you need to
+    do is register and complete your profile.
+  </p>
+  <form>
+    <div class="mb-3 my-5">
+      <label for="scholarship" class="form-label"
+        ><strong>Name of the Scholarship</strong></label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="scholarship"
+        placeholder="Search Scholarship"
+        name="scholarship"
+        [(ngModel)]="inputScholar"
+        (ngModelChange)="search()"
+      />
+    </div>
+  </form>
+</div>
+<div class="scholarships container" *ngFor="let scholarship of scholarships">
+  <div class="card my-3 p-3" *ngIf="inputScholar">
+    <h4>{{ scholarship.name }}</h4>
+    <p>{{ scholarship.eligibility }}</p>
+    <p>{{ scholarship.about }}</p>
+    <p>
+      <strong>{{ scholarship.amount }}</strong>
+    </p>
+  </div>
+</div>
