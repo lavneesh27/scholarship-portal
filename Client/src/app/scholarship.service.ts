@@ -56,4 +56,25 @@ export class ScholarshipService {
       })
     );
   }
+  getUserById(userId: string): Observable<any> {
+    const url = `${this.apiUrl}users/${userId}`;
+
+    return this.http.get(url).pipe(
+      catchError((error: any) => {
+        console.error(`Error in accessing user ${userId}:`, error);
+        return throwError('Internal Server Error');
+      })
+    );
+  }
+
+  updateUser(scholarshipId: string, userId: string): Observable<any> {
+    const url = `${this.apiUrl + 'users'}/${userId}`;
+
+    return this.http.put(url, { scholarshipId }).pipe(
+      catchError((err) => {
+        console.error('Error in updating user scholarships:', err);
+        return throwError('Internal Server Error');
+      })
+    );
+  }
 }

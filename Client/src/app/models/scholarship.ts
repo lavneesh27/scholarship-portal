@@ -1,5 +1,5 @@
 export class Scholarship {
-  id?: number = 0;
+  _id?: string = '';
   name: string = '';
   eligibility: string = '';
   about: string = '';

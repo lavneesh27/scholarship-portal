@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>Hello {{ userName }}</h2>
+  <h5>{{ email }}</h5>
+
+  <strong>Your Selected Scholarships:</strong>
+  <ul class="list-group" *ngFor="let s of scholarships">
+    <li class="list-group-item">{{ s }}</li>
+  </ul>
+</div>

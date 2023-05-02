@@ -27,12 +27,19 @@
   </form>
 </div>
 <div class="scholarships container" *ngFor="let scholarship of scholarships">
-  <div class="card my-3 p-3" *ngIf="inputScholar">
+  <div class="card my-3 p-3">
     <h4>{{ scholarship.name }}</h4>
     <p>{{ scholarship.eligibility }}</p>
     <p>{{ scholarship.about }}</p>
     <p>
       <strong>{{ scholarship.amount }}</strong>
     </p>
+    <button
+      class="btn btn-primary"
+      style="width: 80px"
+      (click)="apply(this.scholarship._id)"
+    >
+      Apply
+    </button>
   </div>
 </div>

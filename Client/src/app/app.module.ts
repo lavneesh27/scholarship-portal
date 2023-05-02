@@ -12,6 +12,7 @@ import { ScholarshipComponent } from './scholarship/scholarship.component';
 import { DeveloperComponent } from './developer/developer.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     AboutComponent,
     ScholarshipComponent,
     DeveloperComponent,
+    ProfileComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
