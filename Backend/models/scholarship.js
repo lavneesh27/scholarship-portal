@@ -5,6 +5,7 @@ var scholarship = mongoose.model("Scholarship", {
   eligibility: { type: String },
   about: { type: String },
   amount: { type: String },
+  apply_link: { type: String },
 });
 
 module.exports = { scholarship };

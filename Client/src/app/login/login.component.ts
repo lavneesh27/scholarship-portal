@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ScholarshipService } from '../scholarship.service';
 import { Router } from '@angular/router';
 import { Register } from '../models/register';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,11 @@ import { Register } from '../models/register';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private service: ScholarshipService, private route: Router) {}
+  constructor(
+    private service: ScholarshipService,
+    private route: Router,
+    private toastr: ToastrService
+  ) {}
   email: string = '';
   password: string = '';
 
@@ -20,14 +25,15 @@ export class LoginComponent {
           (user) => user.email === this.email && user.password === this.password
         );
         if (user) {
-          alert('Login Successful');
           localStorage.setItem('userId', user._id!);
-
-          this.route.navigate(['scholarship']).then(() => {
-            window.location.reload();
-          });
+          localStorage.setItem('toastrMessage', 'You are logged in.');
+          this.toastr.success('You are logged in.');
+          setTimeout(() => {
+            location.reload();
+          }, 1500);
+          this.route.navigate(['scholarship']);
         } else {
-          alert('Login Failure');
+          this.toastr.error('Something went wrong');
         }
       },
       (err) => {

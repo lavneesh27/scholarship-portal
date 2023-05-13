@@ -5,7 +5,7 @@
   <p>
     Finding a Scholarship where you can apply can be a tedious process. But
     Don't worry! we got you covered. Our website allows you to easily browse
-    through Scholarships by category.We make it simple for you to search for
+    through Scholarships by category. We make it simple for you to search for
     Scholarships that you qualify for. We do the work for you, All you need to
     do is register and complete your profile.
   </p>
@@ -26,20 +26,42 @@
     </div>
   </form>
 </div>
-<div class="scholarships container" *ngFor="let scholarship of scholarships">
-  <div class="card my-3 p-3">
-    <h4>{{ scholarship.name }}</h4>
-    <p>{{ scholarship.eligibility }}</p>
-    <p>{{ scholarship.about }}</p>
-    <p>
-      <strong>{{ scholarship.amount }}</strong>
-    </p>
-    <button
-      class="btn btn-primary"
-      style="width: 80px"
-      (click)="apply(this.scholarship._id)"
+<div class="scholarship-container container">
+  <div class="card-columns">
+    <div
+      class="card my-3 p-3 shadow-lg"
+      *ngFor="let scholarship of scholarships"
     >
-      Apply
-    </button>
+      <h4 class="card-title">{{ scholarship.name }}</h4>
+      <div class="card-body">
+        <p class="card-text">
+          <strong>Eligibility: </strong>{{ scholarship.eligibility }}
+        </p>
+        <p class="card-text"><strong>About: </strong>{{ scholarship.about }}</p>
+        <p class="card-text">
+          <strong>Amount: </strong>{{ scholarship.amount }}
+        </p>
+        <p class="card-text">
+          <strong>Apply Link: </strong
+          ><a href="{{ scholarship.apply_link }}" target="_blank">{{
+            scholarship.apply_link
+          }}</a>
+        </p>
+        <div class="d-flex">
+          <a
+            class="btn btn-primary me-2"
+            href="{{ scholarship.apply_link }}"
+            target="_blank"
+            >Apply</a
+          >
+          <button
+            class="btn btn-outline-primary"
+            (click)="save(scholarship._id)"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

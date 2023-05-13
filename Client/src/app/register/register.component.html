@@ -1,5 +1,5 @@
-<div class="container my-5">
-  <form>
+<div class="container my-5 d-flex justify-content-center">
+  <form class="w-50">
     <div class="mb-3">
       <label for="exampleInputusername" class="form-label">User Name</label>
       <input
@@ -37,8 +37,14 @@
       >
       <input type="password" class="form-control" id="exampleInputPassword1" />
     </div>
-    <button type="submit" class="btn btn-primary" (click)="submit()">
-      Register
-    </button>
+    <div class="d-grid gap-2">
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+        (click)="submit()"
+      >
+        Register
+      </button>
+    </div>
   </form>
 </div>

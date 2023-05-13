@@ -4,4 +4,5 @@ export class Scholarship {
   eligibility: string = '';
   about: string = '';
   amount: string = '';
+  apply_link: string = '';
 }

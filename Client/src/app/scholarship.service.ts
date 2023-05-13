@@ -77,4 +77,10 @@ export class ScholarshipService {
       })
     );
   }
+
+  removeScholarship(userId: string, scholarshipId: string): Observable<any> {
+    const url = `${this.apiUrl + 'users'}/${userId}/removeScholarship`;
+    const body = { scholarshipId };
+    return this.http.put(url, body);
+  }
 }

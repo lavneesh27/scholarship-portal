@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Scholarship } from '../models/scholarship';
 import { ScholarshipService } from '../scholarship.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+// import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-scholarship',
@@ -12,7 +14,11 @@ export class ScholarshipComponent implements OnInit {
   scholarship: Scholarship = new Scholarship();
   scholarships: Scholarship[] = [];
   inputScholar: string = '';
-  constructor(private service: ScholarshipService, private route: Router) {}
+  constructor(
+    private service: ScholarshipService,
+    private route: Router,
+    private toastr: ToastrService
+  ) {}
   ngOnInit(): void {
     if (!localStorage.getItem('userId')) {
       this.route.navigate(['login']);
@@ -33,11 +39,19 @@ export class ScholarshipComponent implements OnInit {
   search() {
     this.service.getAllScholarships().subscribe(
       (res) => {
-        // filter scholarships based on inputScholar
         this.scholarships = res.filter((scholarship: Scholarship) => {
-          return scholarship.name
-            .toLowerCase()
-            .includes(this.inputScholar.toLowerCase());
+          const searchFields = [
+            scholarship.name,
+            scholarship.eligibility,
+            scholarship.about,
+            scholarship.amount,
+            scholarship.apply_link,
+          ];
+          const searchText = this.inputScholar.toLowerCase();
+
+          return searchFields.some((field) =>
+            field.toLowerCase().includes(searchText)
+          );
         });
       },
       (err) => {
@@ -45,12 +59,13 @@ export class ScholarshipComponent implements OnInit {
       }
     );
   }
-  apply(scholarshipId: any) {
+
+  save(scholarshipId: any) {
     this.service
       .updateUser(scholarshipId, localStorage.getItem('userId')!)
       .subscribe(
         (res) => {
-          console.log('success');
+          this.toastr.success('Saved Successfully');
         },
         (err) => {
           console.log(err);

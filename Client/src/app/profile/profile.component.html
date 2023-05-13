@@ -1,9 +1,50 @@
-<div class="container">
-  <h2>Hello {{ userName }}</h2>
-  <h5>{{ email }}</h5>
+<div class="container mt-5 h-100">
+  <h2 class="text-center">Hello {{ userName | uppercase }}</h2>
+  <p class="text-center">
+    Connect With Me : <a href="mailto:{{ email }}">{{ email }}</a>
+  </p>
 
-  <strong>Your Selected Scholarships:</strong>
-  <ul class="list-group" *ngFor="let s of scholarships">
-    <li class="list-group-item">{{ s }}</li>
-  </ul>
+  <div *ngIf="scholarships.length > 0; else noScholarships">
+    <strong>Your Selected Scholarships:</strong>
+    <ng-container *ngFor="let scholarship of scholarships">
+      <div class="card my-3 p-3 shadow">
+        <h4>{{ scholarship.name }}</h4>
+        <p><strong>Eligibility: </strong>{{ scholarship.eligibility }}</p>
+        <p><strong>About: </strong> {{ scholarship.about }}</p>
+        <p>
+          <strong>Amount: {{ scholarship.amount }}</strong>
+        </p>
+        <p>
+          <strong
+            >Apply Link:
+            <a href="{{ scholarship.apply_link }}">{{
+              scholarship.apply_link
+            }}</a></strong
+          >
+        </p>
+        <div>
+          <a
+            class="btn btn-primary me-2"
+            style="width: 80px"
+            href="{{ scholarship.apply_link }}"
+            aria-label="Apply"
+          >
+            Apply
+          </a>
+          <button
+            class="btn btn-outline-danger"
+            style="width: 80px"
+            aria-label="Remove Scholarship"
+            (click)="delete(scholarship._id)"
+          >
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <ng-template #noScholarships>
+    <p class="text-center fw-bolder">No scholarships available.</p>
+  </ng-template>
 </div>

@@ -1,4 +1,13 @@
 .form-control{
     width: 50%;
     margin: auto;
+    border-radius: 50px;
+    background: rgba(239, 239, 187, 0.8);
+    border-width: 2px;
+    border-color:  rgba(130, 130, 110, 0.8);
 }
+
+.card{
+    background: rgba(239, 239, 187, 0.2)
+}
+

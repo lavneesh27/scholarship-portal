@@ -46,12 +46,29 @@ router.put("/:id", async (req, res) => {
 
     const updatedUser = await user.findByIdAndUpdate(
       userId,
-      { $push: { scholarships: scholarshipId } },
+      { $addToSet: { scholarships: scholarshipId } },
       { new: true }
     );
     res.send(updatedUser);
   } catch (err) {
     console.error("Error in updating user scholarships:", err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+router.put("/:id/removeScholarship", async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const scholarshipId = req.body.scholarshipId;
+
+    const updatedUser = await user.findByIdAndUpdate(
+      userId,
+      { $pull: { scholarships: scholarshipId } },
+      { new: true }
+    );
+    res.send(updatedUser);
+  } catch (err) {
+    console.error("Error in removing user scholarship:", err);
     res.status(500).send("Internal Server Error");
   }
 });
