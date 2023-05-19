@@ -46,4 +46,18 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+
+  <div *ngIf="!isLogged" class="text-center mt-3 fw-bold">
+    <h4>
+      Please <a href="#" routerLink="/login">Login</a> to view Scholarships
+    </h4>
+  </div>
+  <div *ngIf="isLogged" class="text-center mt-4">
+    <button
+      class="btn btn-warning btn-lg shadow scholar"
+      routerLink="/scholarship"
+    >
+      Show Scholarships ➡️
+    </button>
+  </div>
 </div>

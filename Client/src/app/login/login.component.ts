@@ -3,6 +3,7 @@ import { ScholarshipService } from '../scholarship.service';
 import { Router } from '@angular/router';
 import { Register } from '../models/register';
 import { ToastrService } from 'ngx-toastr';
+import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-login',

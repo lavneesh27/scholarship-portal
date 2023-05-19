@@ -1,5 +1,5 @@
 <div
-  class="container d-flex flex-column justify-content-center text-center my-5"
+  class="container d-flex flex-column justify-content-center text-center h-100"
 >
   <h1>🎓Scholarship</h1>
   <p>
@@ -10,7 +10,7 @@
     do is register and complete your profile.
   </p>
   <form>
-    <div class="mb-3 my-5">
+    <div>
       <label for="scholarship" class="form-label"
         ><strong>Name of the Scholarship</strong></label
       >
@@ -26,41 +26,31 @@
     </div>
   </form>
 </div>
-<div class="scholarship-container container">
-  <div class="card-columns">
-    <div
-      class="card my-3 p-3 shadow-lg"
-      *ngFor="let scholarship of scholarships"
-    >
-      <h4 class="card-title">{{ scholarship.name }}</h4>
-      <div class="card-body">
-        <p class="card-text">
-          <strong>Eligibility: </strong>{{ scholarship.eligibility }}
-        </p>
-        <p class="card-text"><strong>About: </strong>{{ scholarship.about }}</p>
-        <p class="card-text">
-          <strong>Amount: </strong>{{ scholarship.amount }}
-        </p>
-        <p class="card-text">
-          <strong>Apply Link: </strong
-          ><a href="{{ scholarship.apply_link }}" target="_blank">{{
-            scholarship.apply_link
-          }}</a>
-        </p>
-        <div class="d-flex">
-          <a
-            class="btn btn-primary me-2"
-            href="{{ scholarship.apply_link }}"
-            target="_blank"
-            >Apply</a
-          >
-          <button
-            class="btn btn-outline-primary"
-            (click)="save(scholarship._id)"
-          >
-            Save
-          </button>
-        </div>
+<div class="card-columns container">
+  <div class="card my-3 p-3 shadow-lg" *ngFor="let scholarship of scholarships">
+    <h4 class="card-title">{{ scholarship.name }}</h4>
+    <div class="card-body">
+      <p class="card-text">
+        <strong>Eligibility: </strong>{{ scholarship.eligibility }}
+      </p>
+      <p class="card-text"><strong>About: </strong>{{ scholarship.about }}</p>
+      <p class="card-text"><strong>Amount: </strong>{{ scholarship.amount }}</p>
+      <p class="card-text">
+        <strong>Apply Link: </strong
+        ><a href="{{ scholarship.apply_link }}" target="_blank">{{
+          scholarship.apply_link
+        }}</a>
+      </p>
+      <div class="d-flex">
+        <a
+          class="btn btn-primary me-2"
+          href="{{ scholarship.apply_link }}"
+          target="_blank"
+          >Apply</a
+        >
+        <button class="btn btn-outline-primary" (click)="save(scholarship._id)">
+          Save
+        </button>
       </div>
     </div>
   </div>
