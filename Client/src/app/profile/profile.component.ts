@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         (res) => {
           alert('Deleted Succefully');
+          window.location.reload();
         },
         (err) => {
           alert('Something went wrong');
